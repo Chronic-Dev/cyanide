@@ -102,5 +102,6 @@ static inline void flip_endian(unsigned char* x, int length) {
 
 int gpprintf(const char *format, ...);
 void printf_begin();
+void panic(const char* why);
 
 #endif /* COMMON_H */

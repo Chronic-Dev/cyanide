@@ -25,7 +25,6 @@
 
 LinkedList* gTaskList = SELF_TASK_LIST;
 TaskDescriptor** gTaskRunning = SELF_TASK_RUNNING;
-//unsigned int* gTaskCount = SELF_TASK_COUNT;
 void(*task_yield)(void) = SELF_TASK_YIELD;
 
 void task_display_list() {
@@ -95,31 +94,21 @@ int task_display_info(const char* name) {
 }
 
 void task_add_queue(TaskDescriptor* task) {
-	//*gTaskCount++;
+	printf("task_add_queue: Not implemented\n");
 }
 
 void task_start(TaskDescriptor* task) {
-#ifdef S5L8922X
-	void(*_task_setup)(TaskDescriptor *task, const char *name, void *handler, int exit, void *stack, unsigned int stack_size) = (void*) 0x4FF18F75;
-	void(*_task_start)(TaskDescriptor*) = (void*) 0x4FF18F55;
-	_task_setup(task, task->taskName, task->taskRoutine, task->exitState, task->storage, task->storageSize);
-	_task_start(task);
-#else
+	printf("task_start: Not implemented\n");
+/*
 	if(task->state == 0) {
 		task->state = TASK_READY;
 		enter_critical_section();
 		task_add_queue(task);
 		exit_critical_section();
 	}
-#endif
+*/
 }
 
 void task_exit(TaskDescriptor* task) {
-#ifdef S5L8922X
-	void(*_task_exit)(void) = (void*) 0x4FF19470;
-	*gTaskRunning = task;
-	_task_exit();
-#else
-	printf("Error not implemented\n");
-#endif
+	printf("task_exit: Not implemented\n");
 }

@@ -24,9 +24,8 @@
 void enter_critical_section() {
 	TaskDescriptor* current_task = *gTaskRunning;
 	if(current_task->criticalSectionNestCount < 0
-			&& current_task->criticalSectionNestCount > 1000) {
-		printf("enter_critical_section: error\n");
-		halt();
+			|| current_task->criticalSectionNestCount > 1000) {
+		panic("enter_critical_section: error\n");
 	}
 
 	current_task->criticalSectionNestCount++;
@@ -38,9 +37,8 @@ void enter_critical_section() {
 void exit_critical_section() {
 	TaskDescriptor* current_task = *gTaskRunning;
 	if(current_task->criticalSectionNestCount < 0
-			&& current_task->criticalSectionNestCount > 1000) {
-		printf("exit_critical_section: error\n");
-		halt();
+			|| current_task->criticalSectionNestCount > 1000) {
+		panic("exit_critical_section: error\n");
 	}
 
 	current_task->criticalSectionNestCount--;

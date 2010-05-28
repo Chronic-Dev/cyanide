@@ -100,3 +100,9 @@ int gpprintf(const char* fmt, ...) {
 
 	return ret;
 }
+
+
+void panic(const char* why) {
+	printf("%s", why);
+	while(1){}
+}
