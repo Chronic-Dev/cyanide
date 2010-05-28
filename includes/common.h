@@ -22,35 +22,19 @@
 
 #include "device.h"
 
-#ifdef IBOOT
-#	include "iboot.h"
-#else
-#	include "ibss.h"
-#endif
+#include "offsets.h"
 
-#ifdef IBOOT /* IBOOT */
-#	ifdef IBOOT_PRINTF
-#		define SELF_PRINTF ((void*)(IBOOT_BASEADDR + IBOOT_PRINTF))
-#	endif
-#	ifdef IBOOT_VPRINTF
-#		define SELF_VPRINTF ((void*)(IBOOT_BASEADDR + IBOOT_VPRINTF))
-#	endif
-#	ifdef IBOOT_MALLOC
-#		define SELF_MALLOC ((void*)(IBOOT_BASEADDR + IBOOT_MALLOC))
-#	endif
-#	ifdef IBOOT_FREE
-#		define SELF_FREE ((void*)(IBOOT_BASEADDR + IBOOT_FREE))
-#	endif
-#else
-#	ifdef IBSS_PRINTF
-#		define SELF_PRINTF ((void*)(IBSS_BASEADDR + IBSS_PRINTF))
-#	endif
-#	ifdef IBSS_MALLOC
-#		define SELF_MALLOC ((void*)(IBSS_BASEADDR + IBSS_MALLOC))
-#	endif
-#	ifdef IBSS_FREE
-#		define SELF_FREE ((void*)(IBSS_BASEADDR + IBSS_FREE))
-#	endif
+#ifdef TARGET_PRINTF
+#	define SELF_PRINTF ((void*)(TARGET_BASEADDR + TARGET_PRINTF))
+#endif
+#ifdef TARGET_VPRINTF
+#	define SELF_VPRINTF ((void*)(TARGET_BASEADDR + TARGET_VPRINTF))
+#endif
+#ifdef TARGET_MALLOC
+#	define SELF_MALLOC ((void*)(TARGET_BASEADDR + TARGET_MALLOC))
+#endif
+#ifdef TARGET_FREE
+#	define SELF_FREE ((void*)(TARGET_BASEADDR + TARGET_FREE))
 #endif
 
 #ifndef SELF_PRINTF

@@ -22,26 +22,13 @@
 
 #include "device.h"
 
-#ifdef IBOOT
-#	include "iboot.h"
-#else
-#	include "ibss.h"
-#endif
+#include "offsets.h"
 
-#ifdef IBOOT /* IBOOT */
-#	ifdef IBOOT_CMD_LIST_BEGIN
-#		define SELF_CMD_LIST_BEGIN ((void*)(IBOOT_BASEADDR + IBOOT_CMD_LIST_BEGIN))
-#	endif
-#	ifdef IBOOT_CMD_LIST_END
-#		define SELF_CMD_LIST_END ((void*)(IBOOT_BASEADDR + IBOOT_CMD_LIST_END))
-#	endif
-#else
-#	ifdef IBSS_CMD_LIST_BEGIN
-#		define SELF_CMD_LIST_BEGIN ((void*)(IBSS_BASEADDR + IBSS_CMD_LIST_BEGIN))
-#	endif
-#	ifdef IBSS_CMD_LIST_END
-#		define SELF_CMD_LIST_END ((void*)(IBSS_BASEADDR + IBSS_CMD_LIST_END))
-#	endif
+#ifdef TARGET_CMD_LIST_BEGIN
+#	define SELF_CMD_LIST_BEGIN ((void*)(TARGET_BASEADDR + TARGET_CMD_LIST_BEGIN))
+#endif
+#ifdef TARGET_CMD_LIST_END
+#	define SELF_CMD_LIST_END ((void*)(TARGET_BASEADDR + TARGET_CMD_LIST_END))
 #endif
 
 #ifndef SELF_CMD_LIST_BEGIN

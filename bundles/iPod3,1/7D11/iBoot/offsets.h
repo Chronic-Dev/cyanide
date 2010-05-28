@@ -20,14 +20,17 @@
 #ifndef OFFSETS_H
 #define OFFSETS_H
 
+// Base address
+#define TARGET_BASEADDR			(0x0)
+
 // Standard offsets
-#define IBOOT_FREE                     (0x144CC+1)
-#define IBOOT_MALLOC                   (0x14D00+1)
-#define IBOOT_PRINTF                   (0x1E030+1)
-#define IBOOT_VPRINTF                  (0x1DFE0+1)
+#define TARGET_FREE                     (0x144CC+1)
+#define TARGET_MALLOC                   (0x14D00+1)
+#define TARGET_PRINTF                   (0x1E030+1)
+#define TARGET_VPRINTF                  (0x1DFE0+1)
 
 // Command offsets
-#define IBOOT_CMD_LIST_BEGIN           (0x29000)
-#define IBOOT_CMD_LIST_END             (0x2902C)
+#define TARGET_CMD_LIST_BEGIN           (0x29000)
+#define TARGET_CMD_LIST_END             (0x2902C)
 
 #endif // OFFSETS_H
