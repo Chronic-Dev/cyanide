@@ -20,8 +20,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "lock.h"
+//#include "lock.h"
 #include "common.h"
+#include "commands.h"
 
 int gCmdCount = 0;
 Bool gCmdHasInit = FALSE;

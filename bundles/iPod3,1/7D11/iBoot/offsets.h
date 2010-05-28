@@ -33,4 +33,9 @@
 #define TARGET_CMD_LIST_BEGIN           (0x29000)
 #define TARGET_CMD_LIST_END             (0x2902C)
 
+// Task functions
+#define TARGET_TASK_YIELD                (0x190F4+1)
+#define TARGET_TASK_RUNNING              (0x29288)
+#define TARGET_TASK_LIST                 (0x29328)
+
 #endif // OFFSETS_H
