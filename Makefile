@@ -101,8 +101,8 @@ endif
 
 # Variables for supporting verbose mode!
 ifneq ($(messages),yes)
-ECHO_COMPILING=@(echo "  Compiling $@...";
-ECHO_LINKING=@(echo "  Linking $@...";
+ECHO_COMPILING=@(echo "  Compiling $(notdir $^)...";
+ECHO_LINKING=@(echo "  Linking $(notdir $@)...";
 ECHO_NOTHING=@(
 ECHO_END=)
 PRINT_DIR_FLAG=--no-print-directory
