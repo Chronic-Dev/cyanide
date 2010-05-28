@@ -19,8 +19,8 @@
 
 #include <stdarg.h>
 
-//#include "task.h"
-//#include "lock.h"
+#include "task.h"
+#include "lock.h"
 #include "common.h"
 
 void(*_free)(void* ptr) = SELF_FREE;
