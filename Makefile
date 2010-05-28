@@ -67,7 +67,7 @@ clean:
 
 # all, _device, and _firmware are recursive rules that act over devices, firmwares and targets, respectively.
 # When you run 'make', the 'all' rule is run, which runs _device for each device.
-# _device runes _firmware for each firmware.
+# _device runs _firmware for each firmware.
 # _firmware runs _target for each target in that firmware.
 _device::
 	@for i in $(firmwares); do $(MAKE) $(PRINT_DIR_FLAG) --no-keep-going _firmware DEVICE="$(DEVICE)" FIRMWARE="$$i" || exit 1; done
