@@ -22,6 +22,7 @@
 # Compilation can be made more verbose (output compiler and linker commandlines) by supplying "messages=yes", as follows:
 # $ make messages=yes
 
+TOP_DIR := $(shell pwd)
 ifneq ($(DEVICE),)
 -include bundles/$(DEVICE)/device.mk
 endif
@@ -43,7 +44,7 @@ INPUT_FILES += $(wildcard src/*.c)
 
 # Automatically generate the list of object files to link by transforming the list of input files
 # Transformation: remove src/, replace with outputdir/target_, and add .o
-OBJ_FILES = $(patsubst src/%,$(OUTPUT_DIR)/objects/$(TARGET)_%.o,$(INPUT_FILES))
+OBJ_FILES = $(patsubst src/%,$(OUTPUT_DIR)/objects/$(TARGET)/%.o,$(INPUT_FILES))
 
 # Cross-compilation options. Compiler, linker, flags.
 ARM_PREFIX ?= arm-elf-
@@ -79,19 +80,19 @@ ifneq ($(TARGET),)
 # Pre-create the output directory.
 $(OUTPUT_DIR):
 	@mkdir -p $@
-	@mkdir -p $@/objects
+	@mkdir -p $@/objects/$(TARGET)
 
 # The following few rules are for intermediates-
 # a target depends on target.elf, which depends on the object files.
 # The object files are resolved via these rules.
-$(OUTPUT_DIR)/objects/$(TARGET)_%.S.o: src/%.S
+$(OUTPUT_DIR)/objects/$(TARGET)/%.S.o: src/%.S
 	$(ECHO_COMPILING)$(ARM_CC) $(TARGET_CFLAGS) $(CFLAGS) -c -o $@ $<$(ECHO_END)
-$(OUTPUT_DIR)/objects/$(TARGET)_%.c.o: src/%.c
+$(OUTPUT_DIR)/objects/$(TARGET)/%.c.o: src/%.c
 	$(ECHO_COMPILING)$(ARM_CC) $(TARGET_CFLAGS) $(CFLAGS) -c -o $@ $<$(ECHO_END)
 
 # target.elf, the intermediate that is the result of linking all the object files
 $(OUTPUT_DIR)/objects/$(TARGET).elf: $(OBJ_FILES)
-	$(ECHO_LINKING)$(ARM_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) $(LDFLAGS) -o $@ -Ttext=$(TARGET_ADDRESS) $^$(ECHO_END)
+	$(ECHO_LINKING)cd $(OUTPUT_DIR)/objects/$(TARGET); $(ARM_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) $(LDFLAGS) -o ../$(TARGET).elf -T "$(TOP_DIR)/bundles/$(DEVICE)/device.ld" $(subst $(OUTPUT_DIR)/objects/$(TARGET)/,,$^)$(ECHO_END)
 
 # target, strips (objcopy as binary) target.elf into the final target binary.
 $(OUTPUT_DIR)/$(TARGET): $(OUTPUT_DIR)/objects/$(TARGET).elf

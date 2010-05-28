@@ -3,7 +3,7 @@ SECTIONS {
 	_begin = .;
 	
 	.entry : {
-		entry.o (.text .data);
+		entry.S.o (.text .data);
 	}
 	
 	.text : {
