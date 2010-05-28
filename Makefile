@@ -74,13 +74,12 @@ _device::
 	@for i in $(firmwares); do $(MAKE) $(PRINT_DIR_FLAG) --no-keep-going _firmware DEVICE="$(DEVICE)" FIRMWARE="$$i" || exit 1; done
 _firmware::
 	@for i in $(targets); do echo Building $(DEVICE) $(FIRMWARE) $$i...; $(MAKE) $(PRINT_DIR_FLAG) --no-keep-going _target DEVICE="$(DEVICE)" FIRMWARE="$(FIRMWARE)" TARGET="$$i" || exit 1; done
-_target:: $(OUTPUT_DIR) $(OUTPUT_DIR)/$(TARGET)
+_target:: $(OUTPUT_DIR) $(OUTPUT_DIR)/objects/$(TARGET) $(OUTPUT_DIR)/$(TARGET)
 
 ifneq ($(TARGET),)
 # Pre-create the output directory.
-$(OUTPUT_DIR):
+$(OUTPUT_DIR) $(OUTPUT_DIR)/objects/$(TARGET):
 	@mkdir -p $@
-	@mkdir -p $@/objects/$(TARGET)
 
 # The following few rules are for intermediates-
 # a target depends on target.elf, which depends on the object files.
@@ -92,7 +91,7 @@ $(OUTPUT_DIR)/objects/$(TARGET)/%.c.o: src/%.c
 
 # target.elf, the intermediate that is the result of linking all the object files
 $(OUTPUT_DIR)/objects/$(TARGET).elf: $(OBJ_FILES)
-	$(ECHO_LINKING)cd $(OUTPUT_DIR)/objects/$(TARGET); $(ARM_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) $(LDFLAGS) -o ../$(TARGET).elf -T "$(TOP_DIR)/bundles/$(DEVICE)/device.ld" $(subst $(OUTPUT_DIR)/objects/$(TARGET)/,,$^)$(ECHO_END)
+	$(ECHO_LINKING)cd $(OUTPUT_DIR)/objects/$(TARGET); $(ARM_CC) $(TARGET_CFLAGS) $(LDFLAGS) -o ../$(TARGET).elf -T "$(TOP_DIR)/bundles/$(DEVICE)/device.ld" $(subst $(OUTPUT_DIR)/objects/$(TARGET)/,,$^) $(TARGET_LDFLAGS) $(ECHO_END)
 
 # target, strips (objcopy as binary) target.elf into the final target binary.
 $(OUTPUT_DIR)/$(TARGET): $(OUTPUT_DIR)/objects/$(TARGET).elf
