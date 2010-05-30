@@ -27,5 +27,5 @@ SECTIONS {
 	_bss_size = _bss_end - _bss_start;
 	_code_size = _bss_start - _begin;
 	
-	_end = .;
+	end = .;
 }
