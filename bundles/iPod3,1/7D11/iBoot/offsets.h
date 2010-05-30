@@ -21,7 +21,7 @@
 #define OFFSETS_H
 
 // Base address
-#define TARGET_BASEADDR			(0x0)
+#define TARGET_BASEADDR                 (0x4FF00000)
 
 // Standard offsets
 #define TARGET_FREE                     (0x144CC+1)
@@ -37,5 +37,8 @@
 #define TARGET_TASK_YIELD                (0x190F4+1)
 #define TARGET_TASK_RUNNING              (0x29288)
 #define TARGET_TASK_LIST                 (0x29328)
+
+// AES offsets
+#define TARGET_AES_CRYPTO_CMD             (0x1A40C+1)
 
 #endif // OFFSETS_H

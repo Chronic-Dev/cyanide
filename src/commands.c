@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <string.h>
 
-//#include "lock.h"
+#include "lock.h"
 #include "common.h"
 #include "commands.h"
 
