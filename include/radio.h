@@ -1,5 +1,5 @@
 /**
-  * GreenPois0n Cynanide - iPhone3,1/device.h
+  * GreenPois0n Cynanide - radio.h
   * Copyright (C) 2010 Chronic-Dev Team
   * Copyright (C) 2010 Joshua Hill
   *
@@ -17,18 +17,13 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef RADIO_H
+#define RADIO_H
 
-#define S5L8922X
-#define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
-#define FRAMEBUFFER_WIDTH  320
-#define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
-#define IBSS_BASEADDR      0x84000000
-#define LLB_BASEADDR       0x84000000
-#define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"
+#include "common.h"
+#include "commands.h"
 
-#endif // DEVICE_H
+int radio_init();
+int radio_cmd(int argc, CmdArg* argv);
+
+#endif

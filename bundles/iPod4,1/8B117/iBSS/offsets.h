@@ -1,7 +1,8 @@
 /**
-  * GreenPois0n Cynanide - iPhone3,1/device.h
+  * GreenPois0n Cynanide - iPod4,1/8B117/iBSS/offsets.h
   * Copyright (C) 2010 Chronic-Dev Team
   * Copyright (C) 2010 Joshua Hill
+  * Copyright (C) 2010 Dustin Howett
   *
   * This program is free software: you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -17,18 +18,20 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef OFFSETS_H
+#define OFFSETS_H
 
-#define S5L8922X
-#define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
-#define FRAMEBUFFER_WIDTH  320
-#define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
-#define IBSS_BASEADDR      0x84000000
-#define LLB_BASEADDR       0x84000000
-#define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"
+// Base address
+#define TARGET_BASEADDR                   (0x84000000)
 
-#endif // DEVICE_H
+// Task functions
+#define TARGET_TASK_RUNNING               (0x22738)
+#define TARGET_TASK_LIST                  (0x227D0)
+
+// BDev offsets
+#define TARGET_BDEV_LIST                  (0x26280)
+
+// Kernel offsets
+#define TARGET_KERNEL_PHYMEM              (0x267C0)
+
+#endif // OFFSETS_H

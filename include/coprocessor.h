@@ -1,5 +1,5 @@
 /**
-  * GreenPois0n Cynanide - iPhone3,1/device.h
+  * GreenPois0n Cynanide - coprocessor.c
   * Copyright (C) 2010 Chronic-Dev Team
   * Copyright (C) 2010 Joshua Hill
   *
@@ -17,18 +17,33 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef COPROCESSOR_H
+#define COPROCESSOR_H
 
-#define S5L8922X
-#define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
-#define FRAMEBUFFER_WIDTH  320
-#define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
-#define IBSS_BASEADDR      0x84000000
-#define LLB_BASEADDR       0x84000000
-#define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"
+// c0
+int read_processor_id();
+int read_processor_features();
+int read_silicon_id();
 
-#endif // DEVICE_H
+// c1
+int read_control_register();
+void write_control_register(int value);
+int read_auxcontrol_register();
+void write_auxcontrol_register(int value);
+
+// c2
+int read_TBB0();
+void write_TBB0(int value);
+
+// c3
+int read_DAC();
+void write_DAC(int value);
+
+// c7
+void clear_icache();
+//void clear_dcache(); //pod2g: removed, not armv6 compatible
+
+// multiple
+//void clear_cpu_caches(); //pod2g: removed, not armv6 compatible
+
+#endif

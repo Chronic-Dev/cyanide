@@ -20,15 +20,15 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
-#define S5L8922X
-#define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
+#define S5L8720X
+#define LOADADDR           0x09000000
+#define FRAMEBUFFER        0x0FC00000
 #define FRAMEBUFFER_WIDTH  320
 #define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
-#define IBSS_BASEADDR      0x84000000
-#define LLB_BASEADDR       0x84000000
+#define IBOOT_BASEADDR     0x0FF00000
+#define IBEC_BASEADDR      0x0FF00000
+#define IBSS_BASEADDR      0x22000000
+#define LLB_BASEADDR       0x22000000
 #define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"
 
 #endif // DEVICE_H

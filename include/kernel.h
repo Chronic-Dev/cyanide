@@ -1,5 +1,5 @@
 /**
-  * GreenPois0n Cynanide - iPhone3,1/device.h
+  * GreenPois0n Cynanide - kernel.h
   * Copyright (C) 2010 Chronic-Dev Team
   * Copyright (C) 2010 Joshua Hill
   *
@@ -17,18 +17,30 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef KERNEL_H
+#define KERNEL_H
 
-#define S5L8922X
-#define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
-#define FRAMEBUFFER_WIDTH  320
-#define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
-#define IBSS_BASEADDR      0x84000000
-#define LLB_BASEADDR       0x84000000
-#define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"
+#include "common.h"
+#include "device.h"
+#include "offsets.h"
+#include "commands.h"
 
-#endif // DEVICE_H
+#ifdef TARGET_KERNEL_PHYMEM
+#	define SELF_KERNEL_PHYMEM ((void*)(TARGET_BASEADDR + TARGET_KERNEL_PHYMEM))
+#endif
+
+#ifndef SELF_KERNEL_PHYMEM
+#	define SELF_KERNEL_PHYMEM 0
+#	warning "SELF_KERNEL_PHYMEM not defined"
+#endif
+
+extern char* gBootArgs;
+extern char** gKernelPhyMem;
+extern int(*kernel_atv_load)(char* boot_path, char** output);
+extern int(*kernel_load)(void* input, int max_size, char** output);
+
+int kernel_init();
+int kernel_cmd(int argc, CmdArg* argv);
+int kernel_patch(void* address);
+
+#endif /* KERNEL_H */

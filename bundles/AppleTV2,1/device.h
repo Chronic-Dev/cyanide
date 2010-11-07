@@ -1,5 +1,5 @@
 /**
-  * GreenPois0n Cynanide - iPhone3,1/device.h
+  * GreenPois0n Cynanide - AppleTV2.1/device.h
   * Copyright (C) 2010 Chronic-Dev Team
   * Copyright (C) 2010 Joshua Hill
   *
@@ -20,13 +20,13 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
-#define S5L8922X
+#define S5L8930X
 #define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
-#define FRAMEBUFFER_WIDTH  320
-#define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
+#define FRAMEBUFFER        0x5F700000
+#define FRAMEBUFFER_WIDTH  1024
+#define FRAMEBUFFER_HEIGHT 768
+#define IBOOT_BASEADDR     0x5FF00000
+#define IBEC_BASEADDR      0x5FF00000
 #define IBSS_BASEADDR      0x84000000
 #define LLB_BASEADDR       0x84000000
 #define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"

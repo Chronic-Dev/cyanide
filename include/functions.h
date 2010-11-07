@@ -1,5 +1,5 @@
 /**
-  * GreenPois0n Cynanide - iPhone3,1/device.h
+  * GreenPois0n Cynanide - functions.h
   * Copyright (C) 2010 Chronic-Dev Team
   * Copyright (C) 2010 Joshua Hill
   *
@@ -17,18 +17,14 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
-#define S5L8922X
-#define LOADADDR           0x41000000
-#define FRAMEBUFFER        0x4FD00000
-#define FRAMEBUFFER_WIDTH  320
-#define FRAMEBUFFER_HEIGHT 480
-#define IBOOT_BASEADDR     0x4FF00000
-#define IBEC_BASEADDR      0x4FF00000
-#define IBSS_BASEADDR      0x84000000
-#define LLB_BASEADDR       0x84000000
-#define KERNEL_PATH        "/boot/System/Library/Caches/com.apple.kernelcaches/kernelcache"
+unsigned int find_reference(unsigned char* data, unsigned int base, unsigned int size, unsigned int address);
+unsigned int find_top(unsigned char* data, unsigned int base, unsigned int size, unsigned int address);
+unsigned int find_offset(unsigned char* data, unsigned int base, unsigned int size, unsigned char** what);
+unsigned int find_string(unsigned char* data, unsigned int base, unsigned int size, const char* name);
+void* find_function(const char* name, unsigned char* target, unsigned char* base);
 
-#endif // DEVICE_H
+#endif /* LOCK_H */
+
