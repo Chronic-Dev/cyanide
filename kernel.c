@@ -21,7 +21,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lzss.h"
 #include "lock.h"
 #include "image.h"
 #include "patch.h"
