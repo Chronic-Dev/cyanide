@@ -34,11 +34,9 @@
 
 #ifndef SELF_FS_UNMOUNT
 #	define SELF_FS_UNMOUNT 0
-#	warning "SELF_FS_UNMOUNT not defined"
 #endif
 #ifndef SELF_FS_LOAD_FILE
 #	define SELF_FS_LOAD_FILE 0
-#	warning "SELF_FS_LOAD_FILE not defined"
 #endif
 
 extern void(*fs_unmount)(const char *path);

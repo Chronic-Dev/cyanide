@@ -34,12 +34,10 @@
 
 #ifndef SELF_TASK_RUNNING
 #	define SELF_TASK_RUNNING 0
-#	error "SELF_TASK_RUNNING not defined"
 #endif
 
 #ifndef SELF_TASK_LIST
 #	define SELF_TASK_LIST 0
-#	error "SELF_TASK_LIST not defined"
 #endif
 
 #define TaskDescriptorIdentifier1 0x7461736b // 'task'
