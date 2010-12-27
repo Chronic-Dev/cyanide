@@ -352,8 +352,7 @@ int cmd_fsboot(int argc, CmdArg* argv) {
 	if(fsboot == NULL) {
 		if(strstr((char*) (IBOOT_BASEADDR + 0x200), "n72ap")) {
 			fsboot = patch_find(IBOOT_BASEADDR, 0x30000, "\xf0\xb5\x03\xaf\x11\x48", 6);
-		} else
-		if(strstr((char*) (IBOOT_BASEADDR + 0x200), "k66ap")) {
+		} else if(strstr((char*) (IBOOT_BASEADDR + 0x200), "k66ap")) {
 			fsboot = patch_find(IBOOT_BASEADDR, 0x30000, "\xf0\xb5\x03\xaf\x81\xb0", 6);
 		} else {
 			fsboot = patch_find(IBOOT_BASEADDR, 0x30000, "\xb0\xb5\x02\xaf\x11\x48", 6);
