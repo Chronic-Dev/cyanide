@@ -132,7 +132,7 @@ int cmd_init() {
 	cmd_add("mw", &cmd_mw, "write value to specified address");
 	cmd_add("md", &cmd_md, "display value at specified address");
 	cmd_add("call", &cmd_call, "calls a subroutine passing args to it");
-	//cmd_add("rdboot", &cmd_rdboot, "patch and boot kernel with ramdisk");
+	cmd_add("rdboot", &cmd_rdboot, "patch and boot kernel with ramdisk");
 	//cmd_add("test", &cmd_test, "test finding functions offsets");
 
 	jump_to = find_jump_to();
