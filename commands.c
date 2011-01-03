@@ -58,6 +58,10 @@ void* find_cmd_list_begin() {
 		unsigned int* command = reference-i;
 		if(*command == NULL) {
 			return command+1;
+		} else if (command < TARGET_BASEADDR || command >= TARGET_BASEADDR + 0x40000) {
+			return command+1;
+		} else if (*command < TARGET_BASEADDR || *command >= TARGET_BASEADDR + 0x40000) {
+			return command+1;
 		}
 	}
 	return 0;
